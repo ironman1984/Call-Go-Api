@@ -5,16 +5,26 @@ namespace CallApi.Helper
 {
     public class ApiHelper
     {
+        #region variables
         public string baseUrl;
         RestClient client;
         RestRequest request;
+        #endregion
 
+        #region construction
         public ApiHelper() { }
-        public ApiHelper(string baseUrl) { 
+        public ApiHelper(string baseUrl)
+        {
             this.baseUrl = baseUrl;
             client = new RestClient(baseUrl);
         }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Set base Url for Api
+        /// </summary>
+        /// <param name="baseUrl"></param>
         public void SetBaseUrl(string baseUrl)
         {
             this.baseUrl = baseUrl;
@@ -68,7 +78,7 @@ namespace CallApi.Helper
                     request.AddBody(requestInput.Body);
                 }
             }
-            
+
             // act
             RestResponse response = await client.ExecuteAsync(request);
             return response;
@@ -129,5 +139,9 @@ namespace CallApi.Helper
             RestResponse response = await client.ExecuteAsync(request);
             return response;
         }
+        #endregion
+
+
+
     }
 }
