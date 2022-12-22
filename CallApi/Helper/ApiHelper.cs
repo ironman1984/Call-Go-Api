@@ -39,6 +39,8 @@ namespace CallApi.Helper
         public async Task<RestResponse> CallApi(RequestModel requestInput)
         {
             RestRequest request = new RestRequest("/api", requestInput.RequestMethod);
+
+            #region Add header
             if (!string.IsNullOrEmpty(requestInput.Url))
             {
                 request.AddHeader("Poptls-Url", requestInput.Url);
@@ -47,7 +49,6 @@ namespace CallApi.Helper
             {
                 request.AddHeader("User-Agent", requestInput.UserAgent);
             }
-
             if (!string.IsNullOrEmpty(requestInput.Proxy))
             {
                 request.AddHeader("Poptls-Proxy", requestInput.Proxy);
@@ -60,6 +61,17 @@ namespace CallApi.Helper
             {
                 request.AddHeader("Poptls-Timeout", requestInput.Timeout.ToString());
             }
+
+            if (requestInput.Headers != null && requestInput.Headers.Count > 0)
+            {
+                foreach (var item in requestInput.Headers)
+                {
+                    request.AddHeader(item.Key, item.Value);
+                }
+            }
+            #endregion
+
+            #region Add param
             if (requestInput.Params != null && requestInput.Params.Count > 0)
             {
                 foreach (var item in requestInput.Params)
@@ -67,6 +79,9 @@ namespace CallApi.Helper
                     request.AddQueryParameter(item.Key, item.Value);
                 }
             }
+            #endregion
+
+            #region Add body
             if (!string.IsNullOrEmpty(requestInput.JsonBody))
             {
                 request.AddJsonBody(requestInput.JsonBody);
@@ -78,6 +93,7 @@ namespace CallApi.Helper
                     request.AddBody(requestInput.Body);
                 }
             }
+            #endregion
 
             // act
             RestResponse response = await client.ExecuteAsync(request);
@@ -94,16 +110,15 @@ namespace CallApi.Helper
         {
             client = new RestClient(baseUrl);
             request = new RestRequest("/api", Method.Get);
+            #region Add header
             if (!string.IsNullOrEmpty(requestInput.Url))
             {
                 request.AddHeader("Poptls-Url", requestInput.Url);
             }
-
             if (!string.IsNullOrEmpty(requestInput.UserAgent))
             {
                 request.AddHeader("User-Agent", requestInput.UserAgent);
             }
-
             if (!string.IsNullOrEmpty(requestInput.Proxy))
             {
                 request.AddHeader("Poptls-Proxy", requestInput.Proxy);
@@ -117,6 +132,16 @@ namespace CallApi.Helper
                 request.AddHeader("Poptls-Timeout", requestInput.Timeout.ToString());
             }
 
+            if (requestInput.Headers != null && requestInput.Headers.Count > 0)
+            {
+                foreach (var item in requestInput.Headers)
+                {
+                    request.AddHeader(item.Key, item.Value);
+                }
+            }
+            #endregion
+
+            #region Add param
             if (requestInput.Params != null && requestInput.Params.Count > 0)
             {
                 foreach (var item in requestInput.Params)
@@ -124,6 +149,9 @@ namespace CallApi.Helper
                     request.AddQueryParameter(item.Key, item.Value);
                 }
             }
+            #endregion
+
+            #region Add body
             if (!string.IsNullOrEmpty(requestInput.JsonBody))
             {
                 request.AddJsonBody(requestInput.JsonBody);
@@ -135,6 +163,7 @@ namespace CallApi.Helper
                     request.AddBody(requestInput.Body);
                 }
             }
+            #endregion
             // act
             RestResponse response = await client.ExecuteAsync(request);
             return response;
