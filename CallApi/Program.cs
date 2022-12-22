@@ -16,7 +16,7 @@ var requestModel = new RequestModel
 
 Console.WriteLine("Start Call Api");
 ApiHelper api = new ApiHelper(baseUrl);
-var response = api.CallApi(requestModel);
+var response = await api.CallApi(requestModel);
 Console.WriteLine($"Response Code: {response.StatusCode}");
 Console.WriteLine($"Response Content: {response.Content}");
 Console.WriteLine("End Call Api");

@@ -26,7 +26,7 @@ namespace CallApi.Helper
         /// </summary>
         /// <param name="requestInput"></param>
         /// <returns></returns>
-        public RestResponse CallApi(RequestModel requestInput)
+        public async Task<RestResponse> CallApi(RequestModel requestInput)
         {
             RestRequest request = new RestRequest("/api", requestInput.RequestMethod);
             if (!string.IsNullOrEmpty(requestInput.Url))
@@ -57,12 +57,20 @@ namespace CallApi.Helper
                     request.AddQueryParameter(item.Key, item.Value);
                 }
             }
-            if (requestInput.Body != null)
+            if (!string.IsNullOrEmpty(requestInput.JsonBody))
             {
-                request.AddBody(requestInput.Body);
+                request.AddJsonBody(requestInput.JsonBody);
             }
+            else
+            {
+                if (requestInput.Body != null)
+                {
+                    request.AddBody(requestInput.Body);
+                }
+            }
+            
             // act
-            RestResponse response = client.Execute(request);
+            RestResponse response = await client.ExecuteAsync(request);
             return response;
         }
 
@@ -72,7 +80,7 @@ namespace CallApi.Helper
         /// <param name="baseUrl"></param>
         /// <param name="requestInput"></param>
         /// <returns></returns>
-        public RestResponse CallApi(string baseUrl, RequestModel requestInput)
+        public async Task<RestResponse> CallApi(string baseUrl, RequestModel requestInput)
         {
             client = new RestClient(baseUrl);
             request = new RestRequest("/api", Method.Get);
@@ -106,12 +114,19 @@ namespace CallApi.Helper
                     request.AddQueryParameter(item.Key, item.Value);
                 }
             }
-            if (requestInput.Body != null)
+            if (!string.IsNullOrEmpty(requestInput.JsonBody))
             {
-                request.AddBody(requestInput.Body);
+                request.AddJsonBody(requestInput.JsonBody);
+            }
+            else
+            {
+                if (requestInput.Body != null)
+                {
+                    request.AddBody(requestInput.Body);
+                }
             }
             // act
-            RestResponse response = client.Execute(request);
+            RestResponse response = await client.ExecuteAsync(request);
             return response;
         }
     }

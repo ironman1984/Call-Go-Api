@@ -15,6 +15,8 @@
 
         public Dictionary<string, string>? Params { get; set; }
 
-        public object? Body;
+        public object? Body { get; set; }
+
+        public string? JsonBody { get; set; }
     }
 }
