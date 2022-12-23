@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallApi", "CallApi\CallApi.csproj", "{CDFF9609-5ABD-4713-86CF-A68427E1AF18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoRestService", "GoRestSharp\GoRestService.csproj", "{F7A195F0-2DFB-4829-B08B-30DBCAFB287D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CDFF9609-5ABD-4713-86CF-A68427E1AF18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDFF9609-5ABD-4713-86CF-A68427E1AF18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDFF9609-5ABD-4713-86CF-A68427E1AF18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A195F0-2DFB-4829-B08B-30DBCAFB287D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A195F0-2DFB-4829-B08B-30DBCAFB287D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A195F0-2DFB-4829-B08B-30DBCAFB287D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A195F0-2DFB-4829-B08B-30DBCAFB287D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

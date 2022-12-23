@@ -13,10 +13,15 @@ var requestModel = new RequestModel
     Timeout = 100,
     RequestMethod = Method.Get
 };
+GoRest.Service.GoRestService restService = new GoRest.Service.GoRestService();
+
+var response2 = restService.Request("https://browserleaks.com/ssl");
+
+Console.WriteLine(response2.StatusCode);
 
 Console.WriteLine("Start Call Api");
 ApiHelper api = new ApiHelper(baseUrl);
-var response = await api.CallApi(requestModel);
+var response = await api.CallApi2(requestModel);
 Console.WriteLine($"Response Code: {response.StatusCode}");
 Console.WriteLine($"Response Content: {response.Content}");
 Console.WriteLine("End Call Api");
