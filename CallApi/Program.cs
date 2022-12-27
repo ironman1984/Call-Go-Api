@@ -13,18 +13,28 @@ var requestModel = new RequestModel
     Timeout = 100,
     RequestMethod = Method.Get
 };
+var options = new RestClientOptions(baseUrl)
+{
+    
+};
+var client = new RestClient("https://tls.browserleaks.com/json");
+var request = new RestRequest("/", Method.Get);
+request.AddHeader("User-Agent", requestModel.UserAgent);
+client.AllowTlsOnGetRequests();
+var goResponse = client.Execute(request);
+Console.WriteLine($"Go Response Content: {goResponse.Content}");
+
 GoRest.Service.GoRestService restService = new GoRest.Service.GoRestService();
+var response2 = restService.Request("https://tls.browserleaks.com/json");
+Console.WriteLine($"Response Code: {response2.StatusCode}");
+Console.WriteLine($"Response Content: {response2.Content}");
 
-var response2 = restService.Request("https://browserleaks.com/ssl");
-
-Console.WriteLine(response2.StatusCode);
-
-Console.WriteLine("Start Call Api");
-ApiHelper api = new ApiHelper(baseUrl);
-var response = await api.CallApi2(requestModel);
-Console.WriteLine($"Response Code: {response.StatusCode}");
-Console.WriteLine($"Response Content: {response.Content}");
-Console.WriteLine("End Call Api");
-Console.ReadLine();
+//Console.WriteLine("Start Call Api");
+//ApiHelper api = new ApiHelper(baseUrl);
+//var response = await api.CallApi2(requestModel);
+//Console.WriteLine($"Response Code: {response.StatusCode}");
+//Console.WriteLine($"Response Content: {response.Content}");
+//Console.WriteLine("End Call Api");
+//Console.ReadLine();
 
 

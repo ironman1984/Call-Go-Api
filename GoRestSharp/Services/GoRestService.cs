@@ -53,7 +53,6 @@ namespace GoRest.Service
                 this.client = new RestClient(baseUrl);
                 client.Options.MaxTimeout = -1;
             }    
-            
         }
 
         /// <summary>
