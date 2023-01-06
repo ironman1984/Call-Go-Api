@@ -47,11 +47,6 @@ public static class HttpMessageUtils
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage p_request, CancellationToken p_cancellationToken)
         {
-            //FieldInfo invalidHeadersField =
-            //    typeof(HttpHeaders).GetField("invalidHeaders", BindingFlags.NonPublic | BindingFlags.Instance) ??   // System.Net.Http v2.2+
-            //    typeof(HttpHeaders).GetField("_invalidHeaders", BindingFlags.NonPublic | BindingFlags.Instance)     // System.Net.Http before v2.2
-            //;
-            //HashSet<string> invalidHeaders = (HashSet<string>)invalidHeadersField.GetValue(p_request.Headers);
             string resource = "/api";
             Method sendMethod;
             switch (p_request.Method.Method)
